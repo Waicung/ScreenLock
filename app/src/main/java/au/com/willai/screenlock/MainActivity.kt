@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import au.com.willai.screenlock.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             lockScreen()
         }
+
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
