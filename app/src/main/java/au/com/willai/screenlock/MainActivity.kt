@@ -1,16 +1,16 @@
 package au.com.willai.screenlock
 
-import android.app.Activity
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import au.com.willai.screenlock.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.result.contract.ActivityResultContracts
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+    private val REQUEST_CODE = 100
     private lateinit var devicePolicyManager: DevicePolicyManager
     private lateinit var componentName: ComponentName
     private lateinit var binding: ActivityMainBinding
@@ -27,22 +27,14 @@ class MainActivity : AppCompatActivity() {
             putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Explanation for admin rights")
         }
 
-        val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // Handle the result data here
-                val data: Intent? = result.data
-                // ... use the data to do something
-            }
-        }
-        startForResult.launch(intent)
-
+        startActivityForResult(intent, REQUEST_CODE)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
-        binding.fab.setOnClickListener { _ ->
+        binding.fab.setOnClickListener { view ->
             lockScreen()
         }
 
@@ -52,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            // Admin rights granted
+        } else {
+            // Admin rights not granted
+        }
     }
 
     private fun lockScreen() {
