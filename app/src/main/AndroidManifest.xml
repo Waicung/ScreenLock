@@ -59,9 +59,10 @@
         </service>
 
         <receiver android:name=".LockScreenReceiver"
-            android:exported="true">
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
             <intent-filter>
-                <action android:name="com.example.LOCK_SCREEN" />
+                <action android:name="au.com.willai.screenlock.ACTION_LOCK_SCREEN" />
             </intent-filter>
         </receiver>
 
