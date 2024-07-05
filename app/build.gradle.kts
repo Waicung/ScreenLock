@@ -49,4 +49,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.compose.ui:ui:1.3.3")            // Jetpack Compose UI
+    implementation("androidx.compose.material:material:1.3.1")    // Material Design
+    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
 }
